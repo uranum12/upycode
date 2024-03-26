@@ -1,0 +1,48 @@
+[tool.poetry]
+name = "upycode"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.group.rpi_pico]
+optional = true
+dependencies = { micropython-rp2-rpi_pico-stubs = "^1.22" }
+
+[tool.poetry.group.rpi_pico_w]
+optional = true
+dependencies = { micropython-rp2-rpi_pico_w-stubs = "^1.22" }
+
+[tool.poetry.group.dev.dependencies]
+ruff = "*"
+invoke = "*"
+
+[tool.ruff]
+target-version = "py38"
+line-length = 79
+output-format = "grouped"
+
+[tool.ruff.format]
+skip-magic-trailing-comma = true
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+  "COM812", # missing-trailing-comma
+  "ISC001", # single-line-implicit-string-concatenation
+  "D",      # pydocstyle
+  "T20",    # flake8-print
+  "INP",    # flake8-no-pep420
+]
+unfixable = [
+  "ERA", # eradicate
+]
+
+[tool.ruff.lint.isort]
+split-on-trailing-comma = false
+
+[tool.mypy]
+python_version = "3.8"
+show_error_context = true
+show_column_numbers = true
+ignore_missing_imports = true
